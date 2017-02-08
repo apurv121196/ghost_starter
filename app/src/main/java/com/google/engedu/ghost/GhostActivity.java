@@ -22,16 +22,16 @@ import com.google.android.gms.ads.AdView;
 public class GhostActivity extends ActionBarActivity {
     private static final String COMPUTER_TURN = "Computer's turn";
     private static final String USER_TURN = "Your turn";
+    TextView text,label;
+    Button challenge,restart;
+    String wordFragment="";
+    String currentWord="";
     private GhostDictionary dictionary;
     private boolean userTurn = false;
     private Random random = new Random();
     private AdView mAdView;
     private Button keyboard;
-    TextView text,label;
-    Button challenge,restart;
 
-    String wordFragment="";
-    String currentWord="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +40,12 @@ public class GhostActivity extends ActionBarActivity {
 
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-
+//        mAdView.loadAd(adRequest);
         onStart(null);
 
        text=(TextView)findViewById(R.id.ghostText);
         text.setText("");
+
         label=(TextView)findViewById(R.id.gameStatus);
         challenge=(Button)findViewById(R.id.challenge);
         restart=(Button)findViewById(R.id.restart);
@@ -107,6 +107,8 @@ public class GhostActivity extends ActionBarActivity {
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
+        Log.e("Tag","Key daba di!");
+        text.setFocusable(true);
         if(keyCode>=29 && keyCode<=54 && challenge.isEnabled())
         {
             text=(TextView)findViewById(R.id.ghostText);
